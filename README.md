@@ -21,10 +21,7 @@ Run from this folder, e.g. `python 21_duration_yield_loss_E49.py`.
   (imported by `22b_risk_ead_copula.py`)
 
 ## Not in this repo — shared separately via Google Drive
-- `sfincs_model/` — the 49 SFINCS burned-river scenario runs (~22 GB;
-  `run_index.csv` IS included and tracked in git, only the per-scenario
-  run folders `01`..`49` are excluded — see `.gitignore`)
-
+- `sfincs_model/` — the 49 SFINCS burned-river scenario runs (~22 GB)
 Drive link: https://drive.google.com/drive/folders/158ufZJQpa1JFnKYYi9dfz2uJ7g5Rt6OT?usp=sharing 
 
 ## Setup
