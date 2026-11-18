@@ -1,9 +1,4 @@
-"""21 - Flood duration and yield-loss rasters for the 49 burned-river scenarios (models/E49). No hydromt needed.
-Run from codes/08_demak_agri:  python 21_duration_yield_loss_E49.py          (rasterio, geopandas, xarray; resume-friendly)
-Same method and file names as 02_code/03b_run_sfinc.ipynb (duration) and 02_code/04_yield_loss_loop.py (yield loss), with two differences:
-  1. fine elevation = models_riv/static/subgrid/dep_subgrid.tif  (the terrain these runs use; NOT hazard/subgrid/dep_subgrid.tif)
-  2. river channels (Sungai_AR polygons + 30 m) are set to no-data, so water in the channels is never counted as a flooded field
-Outputs in hazard_riv/ (nothing in 01_data is touched):
+"""
   {id}_d_r.tif, {id}_d_nr.tif   3 bands: longest consecutive spell (days) with depth >= 0.25 / 0.5 / 0.85 m
   {id}_{month}_r.tif | _nr.tif  yield loss in % for that month (damage_func/damage_function.csv, Nguyen et al. 2021)
   river_mask.tif                1 = channel pixel left out

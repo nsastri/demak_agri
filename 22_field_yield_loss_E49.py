@@ -1,9 +1,4 @@
-"""22 - Field-level yield loss for the 49 burned-river scenarios. Run from codes/08_demak_agri AFTER 21_duration_yield_loss_E49.py:
-    python 22_field_yield_loss_E49.py
-Copy of 02_code/05_field_yield_loss.py with only the paths changed: scenarios from models/E49, yield-loss rasters from hazard_riv/,
-return levels from data/return_levels.csv, output in results_riv/. River channel pixels are no-data in the rasters and are left out of the field means.
-
-Original description:
+"""
 Field-level yield loss for all scenarios (exposure).
 
 For every scenario (combination id 1..49) and every month (rice 1-4 and 9-12; non-rice 5-8 with placeholder curves, see RICE_ONLY) it reads
@@ -27,7 +22,7 @@ hazard_dir = "hazard_riv"
 out_dir = "results_riv"
 FIELDS = join("exposure_agri", "fields.geojson")
 FIELD_ID_COL = "field_level_id"
-RETURN_PERIODS = join("data", "return_levels.csv")      # 75-year values (NOT return_period.csv)
+RETURN_PERIODS = join("data", "return_levels.csv")
 
 DRY_RUN = False
 RICE_ONLY = False         # False = all 12 months; May-Aug (crop "nr") use placeholder curves copied from rice (see 04_...).

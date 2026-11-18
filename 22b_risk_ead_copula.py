@@ -1,27 +1,12 @@
 """Copula sensitivity of the monthly expected yield loss, for the E49 re-check results.
-
-Copy of 02_code/06b_risk_ead_copula.py with only the paths changed (and one node-consistency guard added):
-    return levels  -> data/return_levels.csv                            (RE-CHECK values, used to build models/E49)
-    yield loss     -> results_riv/field_yield_loss_all_scenarios.parquet (output of 22_field_yield_loss_E49.py)
+    return levels  -> data/return_levels.csv                           
+    yield loss     -> results_riv/field_yield_loss_all_scenarios.parquet
     outputs        -> results_riv/
-    marginals      -> ../01_data/02_ready/monthly_marginals_75yr.csv     (unchanged, see the warning below)
-    dependence     -> data/dependence_monthly_75yr.csv                   (local copy of codes/04_results/dependence_monthly_75yr.csv; unchanged, output of 02a_dependence_monthly.py)
+    marginals      -> ../01_data/02_ready/monthly_marginals_75yr.csv 
+    dependence     -> data/dependence_monthly_75yr.csv 
 The integration functions are imported from lib/06_risk_ead.py (local copy of codes/02_code/06_risk_ead.py); nothing there is changed or re-run.
 
-Nodes and weights are now consistent: both come from the re-check preprocessing (nodes from data/return_levels.csv,
-monthly distributions from data/monthly_marginals_75yr.csv written by 23_monthly_marginals.py). Set MARGINALS back to
-the 01_data/02_ready file to reproduce the pre-re-check numbers.
-
-REMAINING INCONSISTENCY (printed at run time): the Kendall tau and p-values still come from ../04_results/
-dependence_monthly_75yr.csv, fitted by 02a_dependence_monthly.py on the PRE-re-check series. That matters more than it
-looks: 02a estimated tau on wet months only (dropping monthly maxima <= 0.1 mm, giving 56-75 pairs per month), but the
-re-check daily series has almost no zeros (0.1% against 23.5% before), so every month is wet, p0 = 0 for all months,
-and 02a re-run on the re-check series would use 75 pairs everywhere and could pick different months as significant.
-The copula changes the expected loss by ~1e-4 percentage points, so this does not move any result - but it has to be
-stated rather than relied on. Fixing it means porting 02a_dependence_monthly.py onto data/rain_daily.csv +
-data/sea_daily_max.csv as well.
-
-Method (unchanged from 06b):
+Method:
 06_risk_ead.py assumes rainfall and sea level are independent within a month, so W_m(i,j) = a_m(i) * b_m(j). Here the
 same numerical integration is repeated for the months where 02a_dependence_monthly.py rejects independence, with the
 joint probability from a copula instead of a product (no Monte Carlo).
