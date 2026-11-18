@@ -5,8 +5,8 @@ Copy of 02_code/06b_risk_ead_copula.py with only the paths changed (and one node
     yield loss     -> results_riv/field_yield_loss_all_scenarios.parquet (output of 22_field_yield_loss_E49.py)
     outputs        -> results_riv/
     marginals      -> ../01_data/02_ready/monthly_marginals_75yr.csv     (unchanged, see the warning below)
-    dependence     -> ../04_results/dependence_monthly_75yr.csv          (unchanged, output of 02a_dependence_monthly.py)
-The integration functions are imported from ../02_code/06_risk_ead.py; nothing in 02_code is changed or re-run.
+    dependence     -> data/dependence_monthly_75yr.csv                   (local copy of codes/04_results/dependence_monthly_75yr.csv; unchanged, output of 02a_dependence_monthly.py)
+The integration functions are imported from lib/06_risk_ead.py (local copy of codes/02_code/06_risk_ead.py); nothing there is changed or re-run.
 
 Nodes and weights are now consistent: both come from the re-check preprocessing (nodes from data/return_levels.csv,
 monthly distributions from data/monthly_marginals_75yr.csv written by 23_monthly_marginals.py). Set MARGINALS back to
@@ -36,7 +36,7 @@ weights and "no extrapolation beyond the last node" are identical to 06_risk_ead
 reproduces the independent weights (asserted at run time). Two families, both fixed by tau alone:
     gaussian: rho = sin(pi * tau / 2)          frank: theta solved from tau
 
-Run from D:\\Thesis\\codes\\07_recheck:  python 22b_risk_ead_copula.py
+Run from D:\\Thesis\\codes\\08_demak_agri:  python 22b_risk_ead_copula.py
 Outputs in results_riv (nothing from 22_field_yield_loss_E49.py is overwritten):
     risk_weights_copula_monthly.csv       7 x 7 weights per month and family, next to the independent weights
     ead_copula_sensitivity_month.csv      area-weighted expected loss per month: independent vs copula
@@ -49,7 +49,7 @@ from scipy.integrate import quad
 from scipy.optimize import brentq
 
 HERE = dirname(abspath(__file__))
-BASE06 = join(HERE, "..", "02_code", "06_risk_ead.py")
+BASE06 = join(HERE, "lib", "06_risk_ead.py")
 _spec = importlib.util.spec_from_file_location("risk06", BASE06)
 base = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(base)
 
@@ -59,7 +59,7 @@ PARQUET        = join("results_riv", "field_yield_loss_all_scenarios.parquet")
 OUT_DIR        = "results_riv"
 MARGINALS      = join("data", "monthly_marginals_75yr.csv")        # re-check fit (23_monthly_marginals.py)
 # MARGINALS    = join("..", "01_data", "02_ready", "monthly_marginals_75yr.csv")   # pre-re-check fit
-DEPENDENCE     = join("..", "04_results", "dependence_monthly_75yr.csv")
+DEPENDENCE     = join("data", "dependence_monthly_75yr.csv")
 
 PAIRING = "A"               # A = monthly maximum of each driver (the variables the marginals describe)
 ALPHA = 0.05                # months with p < ALPHA get a copula

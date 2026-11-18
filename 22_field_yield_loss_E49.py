@@ -1,4 +1,4 @@
-"""22 - Field-level yield loss for the 49 burned-river scenarios. Run from codes/07_recheck AFTER 21_duration_yield_loss_E49.py:
+"""22 - Field-level yield loss for the 49 burned-river scenarios. Run from codes/08_demak_agri AFTER 21_duration_yield_loss_E49.py:
     python 22_field_yield_loss_E49.py
 Copy of 02_code/05_field_yield_loss.py with only the paths changed: scenarios from models/E49, yield-loss rasters from hazard_riv/,
 return levels from data/return_levels.csv, output in results_riv/. River channel pixels are no-data in the rasters and are left out of the field means.
@@ -22,11 +22,10 @@ import numpy as np, pandas as pd, rasterio
 from os.path import join, exists
 from rasterio.warp import calculate_default_transform, reproject, Resampling
 
-ddir2 = r"../01_data/02_ready"
-events_dir = r"models/E49"
+events_dir = r"sfincs_model"
 hazard_dir = "hazard_riv"
 out_dir = "results_riv"
-FIELDS = join(ddir2, "exposure", "fields.geojson")
+FIELDS = join("exposure_agri", "fields.geojson")
 FIELD_ID_COL = "field_level_id"
 RETURN_PERIODS = join("data", "return_levels.csv")      # 75-year values (NOT return_period.csv)
 

@@ -1,5 +1,5 @@
 """21 - Flood duration and yield-loss rasters for the 49 burned-river scenarios (models/E49). No hydromt needed.
-Run from codes/07_recheck:  python 21_duration_yield_loss_E49.py          (rasterio, geopandas, xarray; resume-friendly)
+Run from codes/08_demak_agri:  python 21_duration_yield_loss_E49.py          (rasterio, geopandas, xarray; resume-friendly)
 Same method and file names as 02_code/03b_run_sfinc.ipynb (duration) and 02_code/04_yield_loss_loop.py (yield loss), with two differences:
   1. fine elevation = models_riv/static/subgrid/dep_subgrid.tif  (the terrain these runs use; NOT hazard/subgrid/dep_subgrid.tif)
   2. river channels (Sungai_AR polygons + 30 m) are set to no-data, so water in the channels is never counted as a flooded field
@@ -12,8 +12,8 @@ id = combination id 1..49 as in models/E49/run_index.csv (1 = RbaseSbase ... 49 
 import os, numpy as np, pandas as pd, xarray as xr, rasterio, geopandas as gpd
 from rasterio.features import rasterize
 from os.path import join, exists
-D2 = "../01_data/02_ready"; EVENTS = "models/E49"; OUT = "hazard_riv"
-DEP = "models_riv/static/subgrid/dep_subgrid.tif"; INDICES = join(D2, "hazard", "subgrid", "indices.tif"); DAMAGE = join(D2, "damage_func", "damage_function.csv")
+EVENTS = "sfincs_model"; OUT = "hazard_riv"
+DEP = "models_riv/static/subgrid/dep_subgrid.tif"; INDICES = join("hazard", "subgrid", "indices.tif"); DAMAGE = join("damage_curves", "damage_function.csv")
 THRESHOLDS_R = [0.25, 0.5, 0.85]; THRESHOLDS_NR = [0.25, 0.5, 0.85]; THRESHOLDS = sorted(set(THRESHOLDS_R + THRESHOLDS_NR))
 RIVER_BUFFER_M = 30; RUN_DAYS = 14.0; ANCHOR_AT_ZERO = True; RICE_ONLY = False; SCENARIOS = None      # None = all, or e.g. [1, 10, 49]
 MONTH_TO_CROP = {1: ("rice", 1, "r"), 9: ("rice", 1, "r"), 2: ("rice", 2, "r"), 3: ("rice", 2, "r"), 10: ("rice", 2, "r"), 11: ("rice", 2, "r"),

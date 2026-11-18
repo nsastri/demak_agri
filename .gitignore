@@ -1,10 +1,12 @@
-# Large SFINCS base model data (~22 GB) - shared via Google Drive, not git
-sfincs_model/
+# SFINCS scenario run outputs (~22 GB total) - shared via Google Drive, not git.
+# run_index.csv itself is small and tracked.
+sfincs_model/*/
+!sfincs_model/run_index.csv
 
-# Forcing data - add specific exceptions below if small forcing files should be tracked
+# Forcing data - currently empty/unused; add exceptions here if needed later
 forcings/
 
-# OS / editor junk
+# OS / editor / python junk
 .DS_Store
 Thumbs.db
 __pycache__/
