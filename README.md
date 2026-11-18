@@ -10,7 +10,7 @@ flood risk.
 
 Run from this folder, e.g. `python 21_duration_yield_loss_E49.py`.
 
-## Contents (in this repo / small enough for git)
+## Contents 
 - `damage_curves/` — rice crop damage function (CSV + reference paper)
 - `exposure_agri/fields.geojson` — field exposure polygons
 - `data/` — `sungai_ar_domain.geojson`, `return_levels.csv`,
