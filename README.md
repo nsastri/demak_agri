@@ -1,8 +1,7 @@
 # 08_demak_agri
 
-Agricultural flood damage analysis for the Demak/Semarang compound coastal
-flood risk study (MSc thesis). Scripts are self-contained copies (paths
-fixed) of originals in `codes/07_recheck` and `codes/02_code`.
+Agricultural flood damage analysis for the Demak compound coastal
+flood risk.
 
 ## Run order
 1. `21_duration_yield_loss_E49.py` — flood duration + yield-loss rasters per scenario -> `hazard_riv/`
@@ -15,22 +14,20 @@ Run from this folder, e.g. `python 21_duration_yield_loss_E49.py`.
 - `damage_curves/` — rice crop damage function (CSV + reference paper)
 - `exposure_agri/fields.geojson` — field exposure polygons
 - `data/` — `sungai_ar_domain.geojson`, `return_levels.csv`,
-  `monthly_marginals_75yr.csv` (re-check fit), `dependence_monthly_75yr.csv`
-- `models_riv/static/subgrid/dep_subgrid.tif` — fine terrain used by the
-  burned-river runs
+  `monthly_marginals_75yr.csv`, `dependence_monthly_75yr.csv`
+- `models_riv/static/subgrid/dep_subgrid.tif` — DEM
 - `hazard/subgrid/indices.tif` — subgrid pixel indices
-- `lib/06_risk_ead.py` — local copy of `codes/02_code/06_risk_ead.py`
+- `lib/06_risk_ead.py`
   (imported by `22b_risk_ead_copula.py`)
 
 ## Not in this repo — shared separately via Google Drive
 - `sfincs_model/` — the 49 SFINCS burned-river scenario runs (~22 GB;
   `run_index.csv` IS included and tracked in git, only the per-scenario
   run folders `01`..`49` are excluded — see `.gitignore`)
-- `forcings/` — currently empty, not used by the scripts above
 
-Drive link: *TODO - add link once uploaded*
+Drive link: https://drive.google.com/drive/folders/158ufZJQpa1JFnKYYi9dfz2uJ7g5Rt6OT?usp=sharing 
 
 ## Setup
 Clone this repo, then download `sfincs_model/` (the `01`-`49` run
 folders) from the Drive link above into the `sfincs_model/` folder here
-before running the scripts.
+before running the scripts. But we have the result already when needed.
