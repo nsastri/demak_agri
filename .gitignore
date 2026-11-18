@@ -1,0 +1,12 @@
+# Large SFINCS base model data (~22 GB) - shared via Google Drive, not git
+sfincs_model/
+
+# Forcing data - add specific exceptions below if small forcing files should be tracked
+forcings/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
