@@ -1,0 +1,427 @@
+name: thesis
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # ── Python ────────────────────────────────────────────────────────────────
+  # Using 3.11: compatible with fiat, hydromt-sfincs, and dfm-tools
+  # NOTE: dfm_tools_env used 3.12 but dfm-tools also works on 3.11
+  - python=3.11
+
+  # ── Core scientific stack ─────────────────────────────────────────────────
+  - numpy=2.4.2
+  - pandas=3.0.1
+  - scipy                      # installed via pip below
+  - matplotlib=3.10.8
+  - contourpy
+  - cycler
+  - fonttools
+  - kiwisolver
+  - pyparsing
+
+  # ── Geospatial (conda) ────────────────────────────────────────────────────
+  - gdal=3.12.2
+  - libgdal-core
+  - libgdal-hdf4
+  - libgdal-hdf5
+  - libgdal-netcdf
+  - geos=3.14.1
+  - proj                       # gdal 3.12.2 requires >=9.8, let conda resolve
+  - pyproj=3.7.2
+  - pysheds
+  - pyshp
+  - cartopy
+  - descartes
+  - geopy
+  - geographiclib
+  - mercantile
+  - contextily
+  - xyzservices
+  - rioxarray=0.19.0           # 0.22.0 requires Python 3.12; 0.19.0 is latest for 3.11
+  - affine
+  - snuggs
+  - cligj
+  - click-plugins
+  - rtree
+  - libspatialindex
+  - libspatialite
+  - librttopo
+  - uriparser
+  - xerces-c
+  - libkml
+  - freexl
+  - muparser
+  - pcre2
+
+  # ── NetCDF / HDF ──────────────────────────────────────────────────────────
+  - hdf4
+  - hdf5
+  - libnetcdf
+  - libaec
+  - blosc
+
+  # ── xarray stack ─────────────────────────────────────────────────────────
+  - xarray=2026.4.0            # dfm version (higher)
+
+  # ── Jupyter / IPython ────────────────────────────────────────────────────
+  - jupyterlab
+  - jupyter_server
+  - jupyter_client
+  - jupyter_core
+  - jupyter_events
+  - jupyter_server_terminals
+  - jupyter-lsp
+  - jupyterlab_server
+  - jupyterlab_pygments
+  - ipykernel
+  - ipython
+  - ipython_pygments_lexers
+  - nbformat
+  - nbclient
+  - nbconvert-core
+  - nest-asyncio
+  - traitlets
+  - comm
+  - debugpy
+  - matplotlib-inline
+  - jedi
+  - parso
+  - executing
+  - asttokens
+  - pure_eval
+  - stack_data
+  - pygments
+  - prompt-toolkit
+  - wcwidth
+  - terminado
+  - pywinpty
+
+  # ── Async / networking ────────────────────────────────────────────────────
+  - aiohttp
+  - aiosignal
+  - aiohappyeyeballs
+  - frozenlist
+  - multidict
+  - yarl
+  - propcache
+  - attrs
+  - h2
+  - hpack
+  - hyperframe
+  - fsspec=2026.4.0
+  - boto3                      # via pip below (with botocore)
+  - s3transfer
+  - requests
+  - urllib3
+  - charset-normalizer
+  - idna
+  - certifi
+  - pysocks
+  - win_inet_pton
+  - cryptography
+  - pyopenssl
+  - pyjwt
+  - cffi
+  - pycparser
+
+  # ── Google Cloud ──────────────────────────────────────────────────────────
+  - gcsfs
+  - google-auth
+  - google-auth-oauthlib
+  - google-api-core
+  - google-cloud-core
+  - google-cloud-storage
+  - google-resumable-media
+  - googleapis-common-protos
+  - grpcio
+  - grpcio-status
+  - protobuf
+  - pyasn1
+  - pyasn1-modules
+  - rsa
+  - oauthlib
+  - requests-oauthlib
+
+  # ── Serialization / formats ───────────────────────────────────────────────
+  - pyyaml
+  - yaml
+  - toml
+  - tomli
+  - arrow
+  - python-dateutil
+  - pytz
+  - python-tzdata
+  - packaging
+  - importlib-metadata
+  - zipp
+  - six
+  - click
+  - colorama
+  - rich
+  - tqdm
+  - joblib
+  - cloudpickle
+  - dill
+  - lxml
+  - beautifulsoup4
+  - soupsieve
+  - defusedxml
+  - jinja2
+  - markupsafe
+  - mistune
+  - tinycss2
+  - webencodings
+  - bleach
+  - bleach-with-css
+  - pandocfilters
+  - referencing
+  - rpds-py
+  - jsonschema
+  - jsonschema-specifications
+  - jsonschema-with-format-nongpl
+  - python-fastjsonschema
+  - python-json-logger
+  - snappy
+  - lz4-c
+  - zstd
+  - lzo
+  - bzip2
+  - zlib
+  - zlib-ng
+  - libzlib
+  - liblzma
+  - libarchive
+  - minizip
+  - libzip
+
+  # ── Image / plotting extras ───────────────────────────────────────────────
+  - pillow
+  - imagecodecs
+  - imageio
+  - tifffile
+  - libtiff
+  - libpng
+  - libjpeg-turbo
+  - openjpeg
+  - libwebp
+  - libwebp-base
+  - lcms2
+  - lerc
+  - libdeflate
+  - giflib
+  - libjxl
+  - charls
+  - openjph
+  - zfp
+  - networkx
+
+  # ── Qt / GUI (needed by some visualization tools) ─────────────────────────
+  - pyside6
+  # - qt6-main                  # removed: let pyside6 pull correct version
+
+  # ── pyzmq / tornado (Jupyter deps) ────────────────────────────────────────
+  - pyzmq
+  - zeromq
+  - tornado
+
+  # ── Misc system ───────────────────────────────────────────────────────────
+  - psutil
+  - platformdirs
+  - decorator
+  - wrapt
+  - looseversion
+  - sortedcontainers
+  - python-dotenv
+  - pystac
+  - shapely
+  - numba=0.64.0              # 3.11-compatible version (hydromt version)
+  - numpy
+  - mkl
+  - libblas
+  - libcblas
+  - liblapack
+  - tbb
+  - libhwloc
+  - llvm-openmp
+  - libgomp
+  - libgcc
+  - libsodium
+  - libssh2
+  - krb5
+  - libcurl
+  - openssl
+  - ca-certificates
+  - libffi
+  - libexpat
+  - expat
+  - icu
+  - harfbuzz
+  - freetype
+  - libfreetype
+  - fontconfig
+  - pango
+  - cairo
+  - librsvg
+  - gdk-pixbuf
+  - pixman
+  - graphite2
+  - fribidi
+  - fonts-conda-ecosystem
+  - fonts-conda-forge
+  - font-ttf-dejavu-sans-mono
+  - font-ttf-inconsolata
+  - font-ttf-source-code-pro
+  - font-ttf-ubuntu
+  - glib
+  - libglib
+  - glib-tools
+  - tk
+  - libxcb
+  - xorg-libxau
+  - xorg-libxdmcp
+  - libxml2
+  - libxml2-devel
+  - libxslt
+  - libiconv
+  - libintl
+  - libintl-devel
+  - ucrt
+  - vc
+  - vc14_runtime
+  - vs2015_runtime
+  - libwinpthread
+  - setuptools
+  - wheel
+  - pip
+
+  # ── pip packages ──────────────────────────────────────────────────────────
+  - pip:
+      # DFM-tools core
+      - dfm-tools==0.45.0
+      - hydrolib-core==1.0.1
+      - meshkernel==8.3.0
+      - arcosparse==0.5.1
+      - xugrid==0.15.2          # dfm version (higher)
+
+      # HydroMT / SFINCS core
+      - hydromt==1.3.0
+      - hydromt-sfincs==2.0.0rc1
+      - cht-tide==0.1.1
+      - cht-utils==1.0.0
+
+      # Flood impact (FIAT — installed via conda above as delft_fiat)
+
+      # Numba stack (match 3.11 compat)
+      - llvmlite==0.46.0        # must match numba=0.64 on Python 3.11
+      - numba-celltree==0.4.2
+
+      # Data / IO
+      - scipy==1.17.1
+      - netcdf4==1.7.4
+      - h5py==3.16.0
+      - h5netcdf==1.8.1
+      - rasterio==1.5.0         # dfm version (higher)
+      - geopandas==1.1.3        # dfm version (higher)
+      - pyogrio==0.12.1
+      # rioxarray already pinned in conda section above
+      - zarr==3.2.1             # dfm version (higher)
+      - numcodecs==0.16.5
+      - pyarrow==24.0.0         # dfm version (higher)
+      - dask==2026.3.0          # dfm version (higher)
+      - bottleneck==1.6.0
+      - partd==1.4.2
+      - locket==1.0.0
+      - toolz==1.1.0
+      - cloudpickle==3.1.2
+      - fsspec==2026.4.0
+      - s3fs==2026.2.0
+      - s3transfer==0.17.0
+      - boto3==1.43.11
+      - botocore==1.43.11       # dfm version (higher)
+      - aiobotocore==3.2.0
+      - aioitertools==0.13.0
+      - jmespath==1.1.0
+      - pooch==1.9.0
+      - cftime==1.6.5
+      - lxml==6.1.1
+      - xmltodict==1.0.4
+      - toml==0.10.2
+      - tomli-w==1.2.0
+
+      # Pydantic stack
+      - pydantic==2.13.4        # dfm version (higher)
+      - pydantic-core==2.46.4   # dfm version (higher)
+      - pydantic-settings==2.14.1
+      - annotated-types==0.7.0
+      - typing-inspection==0.4.2
+
+      # HTTP / networking
+      - httpx==0.28.1
+      - httpcore==1.0.9
+      - h11==0.16.0
+      - httplib2==0.31.2
+      - anyio==4.13.0
+      - requests-cache==1.3.2
+
+      # Geospatial extras
+      - shapely==2.1.2
+      - pyflwdir==0.5.10
+      - pysheds                 # already in conda
+      - geoalchemy2==0.18.3
+      - mapclassify==2.10.0
+      - mapbox-earcut==2.0.0
+      - folium==0.20.0
+      - branca==0.8.2
+      - overturemaps==0.19.0
+      - xyzservices==2025.11.0
+
+      # ML / image processing
+      - scikit-image==0.26.0
+      - scikit-learn==1.8.0
+      - threadpoolctl==3.6.0
+
+      # Database
+      - sqlalchemy==2.0.47
+      - psycopg==3.3.3
+      - psycopg-binary==3.3.3
+      - greenlet==3.3.2
+
+      # Cloud / remote data
+      - copernicusmarine==2.4.1
+      - cdsapi==0.7.7
+      - ecmwf-datastores-client==0.5.1
+      - erddapy==3.1.1
+      - multiurl==0.3.7
+      - earthengine-api==1.7.18
+      - google-api-python-client==2.193.0
+      - google-auth-httplib2==0.3.0
+      - uritemplate==4.2.0
+      - google-crc32c==1.8.0
+      - cfgrib==0.9.15.1
+      - eccodes==2.46.0
+      - findlibs==0.1.2
+      - pydap==3.5.9
+      - webob==1.8.9
+
+      # Misc utils
+      - semver==3.0.4
+      - strenum==0.4.15
+      - url-normalize==3.0.0
+      - rws-ddlpy==0.10.0
+      - pystac==1.14.3
+      - universal-pathlib==0.3.10
+      - pathlib-abc==0.5.2
+      - propcache==0.4.1
+      - frozenlist==1.8.0
+      - pytz==2026.2
+      - python-dotenv==1.2.2
+      - donfig==0.8.1.post1
+      - invoke==2.2.1
+      - paramiko==4.0.0
+      - bcrypt==5.0.0
+      - pynacl==1.6.2
+      - wrapt==2.1.1
+      - tqdm==4.67.3
+      - networkx
+
+prefix: C:\Users\USER\anaconda3\envs\thesis
